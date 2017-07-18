@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Contact | Your Name</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3" style="background-color: blue; margin-bottom:30px ">
+				<h2 style="text-align: center;">
+					Crystal Collector!
+				</h2>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6" style="background-color: blue ; margin-bottom:20px ">
+				<h3> you will given a random number at the beginiing of the game</h3>
+				<h3>there are four crystal below by clicking on a crystal you will add aspecific amount
+				of point to your score.</h3>
+				<h3>you win the game by matching the total score to total number,you lose the game if your total score
+				goes above the random number.</h3>
+				<h3>the value of each crystal is hidden from you until you click on it.<h3>
+				<h3>each time , when the game starts , the game will change the value of each crystal.
+				</h3>
+			</div>
+		</div>
+		<div class = "row">
+		<div class = "col-md-2" style="background-color: green ; height:165.6px ;margin-right: 15px "><h3 class = "totalscoreshown"> here </h3></div>
+
+		<div class = "col-md-2" style = "background-color: blue ">
+		<div class = "row">
+		<h3>wins: <div class = "win">0</div></h3>
+		</div>
+		<div class = "row">
+		<h3>lose:<div class = "lose">0</div></h3>
+		</div>
+		</div>
+		</div>
+		<div class = "row">
+		<div class = "col-md-1 " style="padding: 0px;width:40px;">
+		<button class = "image" value="0" style="padding: 0px;border-width:  0px;width: 40px"><img src="assets\valuezero.png "    alt="Mountain View" style="width:40px;height:40px;padding: 5px;border-style: solid; border-width: 5px;border-color: black;"></button>
+		</div>
+		<div class = "col-md-1 " style="padding: 0px ; width: 40px;">
+		<button class = "image" value="1" style="padding: 0px;border-width:  0px;width: 40px ">
+		<img src="assets\valueone.png"  alt="Mountain View" style="width:40px;height:40px;padding: 5px;border-style: solid; border-width: 5px;border-color: black;"></button>
+		</div>
+		<div class = "col-md-1 " style="padding: 0px ; width: 40px;">
+		<button class = "image" value="2" style="padding: 0px;border-width: 0px;width: 40px " ><img src="assets\valuetwo.png "  alt="Mountain View"  style="width:40px;height:40px;padding: 5px;border-style: solid; border-width: 5px;border-color: black;"></button>
+		</div>
+		<div class = "col-md-1 " style="padding: 0px ; width: 40px;">
+		<button class = "image" value="3" style="padding: 0px;border-width: 0px ;width: 40px "><img src="assets\valuethree.png "  alt="Mountain View"  style="width:40px;height:40px;padding: 5px;border-style: solid; border-width: 5px;border-color: black;"></button>
+		</div>
+		</div>
+		<div class = "row">
+		<div class = "col-md-3 " style="padding: 0px">
+		<h3 style="background-color: green;color: black;">the total score is:</h3>
+		</div>
+		</div>
+		<div class = "row">
+		<div class = "col-md-3" style = "padding:0px">
+		<div class= "totalscore" style="background-color: green;height: 200px"></div>
+        </div>
+        </div>
+	</div>
+	
+</body>
+<script>
+$(document).ready(function(){
+	var result = 0;
+	var storing = "";
+	var random0 = Math.floor(Math.random() * 11)
+	var random1 = Math.floor(Math.random() * 11)
+	var random2 = Math.floor(Math.random() * 11)
+	var random3 = Math.floor(Math.random() * 11)
+	var randomlyselectedtotalscore = Math.floor(Math.random() * (50 - 40) + 40);
+	$(".totalscoreshown").text(randomlyselectedtotalscore);
+	
+	var win = 0;
+	var lose = 0;
+
+
+$(".image").on("click", function() {
+	storing = this.value;
+	console.log(storing);
+	
+	  
+	if(storing == "0"){
+    result += random0;
+    
+    $(".totalscore").text(result);
+
+	}
+	if(storing == "1"){
+    result += random1;
+     $(".totalscore").text(result);
+	}
+	if(storing == "2"){
+    result += random2;
+     $(".totalscore").text(result);
+	}
+	if(storing == "3"){
+    result += random3;
+     $(".totalscore").text(result);
+	}
+if(result == randomlyselectedtotalscore){
+		win +=1;
+		$(".win").text(win);
+
+	  	$(".totalscore").text("0");
+	  	result = 0;
+
+		 random0 = Math.floor(Math.random() * 11);
+	 random1 = Math.floor(Math.random() * 11);
+	 random2 = Math.floor(Math.random() * 11);
+	 random3 = Math.floor(Math.random() * 11);
+	 randomlyselectedtotalscore = Math.floor(Math.random() * (50 - 40) + 40);
+
+	 $(".totalscoreshown").text(randomlyselectedtotalscore);
+		return;
+	}
+	
+	  if(result > randomlyselectedtotalscore){
+	  	lose +=1;
+	  	result = 0;
+	  	$(".lose").text(lose);
+	  	$(".totalscore").text("0");
+	  	random0 = Math.floor(Math.random() * 11);
+	random1 = Math.floor(Math.random() * 11);
+	random2 = Math.floor(Math.random() * 11);
+	 random3 = Math.floor(Math.random() * 11);
+	 	 randomlyselectedtotalscore = Math.floor(Math.random() * (50 - 40) + 40);
+
+	 $(".totalscoreshown").text(randomlyselectedtotalscore);
+	 return
+	  }
+
+
+});
+
+});
+</script>
+</html>
